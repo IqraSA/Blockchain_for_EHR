@@ -124,16 +124,12 @@ def linkedacc():
         'guardian':acc
     }
     myval=con.find(contract)
-    mycontro=[]
-    for i in myval:
-        mycontro.append(i)
+    mycontro = list(myval)
     contract={
         'owner':acc
     }
     myval=con.find(contract)
-    outcontro=[]
-    for i in myval:
-        outcontro.append(i)
+    outcontro = list(myval)
     return render_template('linkedacc.html',mycontrol=mycontro,outcontrol=outcontro)
 
 
@@ -263,44 +259,43 @@ def genadd():
     #st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
     now = datetime.datetime.now()
     st=now.strftime("%Y-%m-%d %H:%M:%S")
-    block={
-        '_id':pid+'REC'+str(ind+1),
-        'owner':pid,
-        'type':'General information',
-        'creator':session['user'],
+    block = {
+        '_id': f'{pid}REC{str(ind + 1)}',
+        'owner': pid,
+        'type': 'General information',
+        'creator': session['user'],
         'gender': request.form['gen'],
-        'Age':request.form['age'],
-        'Weight':request.form['wt'],
-        'height':request.form['ht'],
-        'BMI':request.form['bmival'],
-        'Blood_grp':request.form['blood'],
-        'BP':request.form['bp'],
-        'Diabetes':request.form['si'],
-        'Food_allergies':request.form['nah'],
+        'Age': request.form['age'],
+        'Weight': request.form['wt'],
+        'height': request.form['ht'],
+        'BMI': request.form['bmival'],
+        'Blood_grp': request.form['blood'],
+        'BP': request.form['bp'],
+        'Diabetes': request.form['si'],
+        'Food_allergies': request.form['nah'],
         'prev': prevs,
-        'timestamp':st
-        }
+        'timestamp': st,
+    }
     block_string = json.dumps(block, sort_keys=True)
     hashval=sha256(block_string.encode()).hexdigest()
-    block={
-        '_id':pid+'REC'+str(ind+1),
-        'owner':pid,
-        'type':'General information',
-        'creator':session['user'],
+    block = {
+        '_id': f'{pid}REC{str(ind + 1)}',
+        'owner': pid,
+        'type': 'General information',
+        'creator': session['user'],
         'gender': request.form['gen'],
-        'Age':request.form['age'],
-        'Weight':request.form['wt'],
-        'height':request.form['ht'],
-        'BMI':request.form['bmival'],
-        'Blood_grp':request.form['blood'],
-        #'Blood_type':request.form['pos'],
-        'BP':request.form['bp'],
-        'Diabetes':request.form['si'],
-        'Food_allergies':request.form['nah'],
-        'hash':hashval,
+        'Age': request.form['age'],
+        'Weight': request.form['wt'],
+        'height': request.form['ht'],
+        'BMI': request.form['bmival'],
+        'Blood_grp': request.form['blood'],
+        'BP': request.form['bp'],
+        'Diabetes': request.form['si'],
+        'Food_allergies': request.form['nah'],
+        'hash': hashval,
         'prev': prevs,
-        'timestamp':st
-        }
+        'timestamp': st,
+    }
     type='genadder'
     #myrow.insert_one(block)
     return render_template('disp.html',posts=block,direct=type)
@@ -357,60 +352,58 @@ def biocadd():
     #st = datetime.datetime.fromtimestamp(ts).strftime("%Y-%m-%d %H:%M:%S")
     now = datetime.datetime.now()
     st=now.strftime("%Y-%m-%d %H:%M:%S")
-    block={
-        '_id':pid+'REC'+str(ind+1),
-        'owner':pid,
-        'type':'Clinical Laboratory information',
-        'creator':session['user'],
+    block = {
+        '_id': f'{pid}REC{str(ind + 1)}',
+        'owner': pid,
+        'type': 'Clinical Laboratory information',
+        'creator': session['user'],
         'Haemoglobin (g/dL)': request.form['hdl'],
-        'Glucose (random PP)':request.form['glr'],
-        'Glucose (fasting)':request.form['glf'],
-        #'HbA1c (EDTA Blood)':request.form['hba1c'],
-        'SERUM Appearance':request.form['seum'],
-        'Total Cholestrol':request.form['tch'],
-        'Triglycerides':request.form['try'],
-        'HDL Cholestrol':request.form['hch'],
-        'LDL Cholestrol':request.form['lch'],
-        'VLDL':request.form['vldl'],
-        'CHOL / HDL Ratio':request.form['chol'],
-        'Colour':request.form['colo'],
-        'Apperance':request.form['coloo'],
-        'PH':request.form['ph'],
-        'Protein':request.form['pro'],
-        'Sugar':request.form['sug'],
-        'Bile Salt':request.form['bsal'],
-        'Bile Pigment':request.form['bpig'],
+        'Glucose (random PP)': request.form['glr'],
+        'Glucose (fasting)': request.form['glf'],
+        'SERUM Appearance': request.form['seum'],
+        'Total Cholestrol': request.form['tch'],
+        'Triglycerides': request.form['try'],
+        'HDL Cholestrol': request.form['hch'],
+        'LDL Cholestrol': request.form['lch'],
+        'VLDL': request.form['vldl'],
+        'CHOL / HDL Ratio': request.form['chol'],
+        'Colour': request.form['colo'],
+        'Apperance': request.form['coloo'],
+        'PH': request.form['ph'],
+        'Protein': request.form['pro'],
+        'Sugar': request.form['sug'],
+        'Bile Salt': request.form['bsal'],
+        'Bile Pigment': request.form['bpig'],
         'prev': prevs,
-        'timestamp':st
-        }
+        'timestamp': st,
+    }
     block_string = json.dumps(block, sort_keys=True)
     hashval=sha256(block_string.encode()).hexdigest()
-    block={
-        '_id':pid+'REC'+str(ind+1),
-        'owner':pid,
-        'type':'Clinical Laboratory information',
-        'creator':session['user'],
+    block = {
+        '_id': f'{pid}REC{str(ind + 1)}',
+        'owner': pid,
+        'type': 'Clinical Laboratory information',
+        'creator': session['user'],
         'Haemoglobin': request.form['hdl'],
-        'Random_PP':request.form['glr'],
-        'Fasting':request.form['glf'],
-         #'HbA1c (EDTA Blood)':request.form['hbalc'],
-        'SERUM Appearance':request.form['seum'],
-        'Cholestrol':request.form['tch'],
-        'Triglycerides':request.form['try'],
-        'HDLCholestrol':request.form['hch'],
-        'LDLCholestrol':request.form['lch'],
-        'VLDL':request.form['vldl'],
-         #'CHOL / HDL Ratio':request.form['chol'],
-        'Colour':request.form['colo'],
-        'Apperance':request.form['coloo'],
-        'PH':request.form['ph'],
-        'Protein':request.form['pro'],
-        'Sugar':request.form['sug'],
-        'BileSalt':request.form['bsal'],
-        'BilePigment':request.form['bpig'],
-        'hash':hashval,
+        'Random_PP': request.form['glr'],
+        'Fasting': request.form['glf'],
+        'SERUM Appearance': request.form['seum'],
+        'Cholestrol': request.form['tch'],
+        'Triglycerides': request.form['try'],
+        'HDLCholestrol': request.form['hch'],
+        'LDLCholestrol': request.form['lch'],
+        'VLDL': request.form['vldl'],
+        'Colour': request.form['colo'],
+        'Apperance': request.form['coloo'],
+        'PH': request.form['ph'],
+        'Protein': request.form['pro'],
+        'Sugar': request.form['sug'],
+        'BileSalt': request.form['bsal'],
+        'BilePigment': request.form['bpig'],
+        'hash': hashval,
         'prev': prevs,
-        'timestamp':st}
+        'timestamp': st,
+    }
     type='biocadder'
     return render_template('disp.html',posts=block,direct=type)
 
@@ -483,19 +476,20 @@ def cardiacadd():
         ind=ind+1
     ts=time.time()
     st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
-    block={
-        '_id':pid+'REC'+str(ind+1),
-        'owner':pid,
-        'type':'Cardiac Report',
-        'creator':session['user'],
+    block = {
+        '_id': f'{pid}REC{str(ind + 1)}',
+        'owner': pid,
+        'type': 'Cardiac Report',
+        'creator': session['user'],
         'CHOLESTROL': request.form['cho'],
-        'TRIGYCERIDES':request.form['tri'],
+        'TRIGYCERIDES': request.form['tri'],
         'ECG': f.filename,
-        'EST':g.filename,
-        'ECHOCARDIO':h.filename,
-        'ANGIOGRAM':an.filename,
+        'EST': g.filename,
+        'ECHOCARDIO': h.filename,
+        'ANGIOGRAM': an.filename,
         'prev': prevs,
-        'timestamp':st}
+        'timestamp': st,
+    }
     block_string = json.dumps(block, sort_keys=True)
     hashval=sha256(block_string.encode()).hexdigest()
     if f.filename!='':
@@ -581,7 +575,7 @@ def patient():
 #Patient Login
 @app.route('/patientlog')
 def patientlog():
-    if 'user' in session and str(session['user']).find('PAT')!=-1:
+    if 'user' in session and 'PAT' in str(session['user']):
         return render_template('patdash.html')
     else:
         return render_template('patientlog.html')
@@ -632,83 +626,80 @@ def patcreate():
         prev=x['hash']
         ind=ind+1
 
-    i='PAT00'+str(ind+1)
-    block={
-    '_id':i,
-    'timestamp':st,
-    'first': first,
-    'second':second,
-    'passwd': passwd,
-    'address':addres,
-    'city':city,
-    'state':state,
-    'aadhar':aadhar,
-    'prevhash':prev
-}
+    i = f'PAT00{str(ind + 1)}'
+        block={
+        '_id':i,
+        'timestamp':st,
+        'first': first,
+        'second':second,
+        'passwd': passwd,
+        'address':addres,
+        'city':city,
+        'state':state,
+        'aadhar':aadhar,
+        'prevhash':prev
+    }
     block_string = json.dumps(block, sort_keys=True)
     hashval=sha256(block_string.encode()).hexdigest()
     session['user']=i
-    block={
-    '_id':i,
-    'timestamp':st,
-    'first': first,
-    'second':second,
-    'passwd': passwd,
-    'address':addres,
-    'record':i+'REC',
-    'city':city,
-    'state':state,
-    'aadhar':aadhar,
-    'prevhash':prev,
-    'hash': hashval
-}
+    block = {
+        '_id': i,
+        'timestamp': st,
+        'first': first,
+        'second': second,
+        'passwd': passwd,
+        'address': addres,
+        'record': f'{i}REC',
+        'city': city,
+        'state': state,
+        'aadhar': aadhar,
+        'prevhash': prev,
+        'hash': hashval,
+    }
     '''
     ima=open(file, "rb")
     f = ima.read()
     b = bytearray(f)'''
     myrow=mydb[i]
-    rec={
-        '_id':i+'REC'+'00',
-        'doc':'',
-        'gluc':0,
-        'glucf':0,
-        'serum':0,
-        'blood':0,
+    rec = {
+        '_id': f'{i}REC00',
+        'doc': '',
+        'gluc': 0,
+        'glucf': 0,
+        'serum': 0,
+        'blood': 0,
         'chol': 0,
-        'thdl':0,
-        'ldl':0,
-        'rbc':0,
-        'pulse':'',
+        'thdl': 0,
+        'ldl': 0,
+        'rbc': 0,
+        'pulse': '',
         'prev': '0',
-
     }
     block_s = json.dumps(rec, sort_keys=True)
     hashrec=sha256(block_s.encode()).hexdigest()
-    rec={
-        '_id':i+'REC'+'00',
-        'doc':'',
-        'type':'none',
-        'gluc':0,
-        'glucf':0,
-        'serum':0,
-        'blood':0,
+    rec = {
+        '_id': f'{i}REC00',
+        'doc': '',
+        'type': 'none',
+        'gluc': 0,
+        'glucf': 0,
+        'serum': 0,
+        'blood': 0,
         'chol': 0,
-        'thdl':0,
-        'ldl':0,
-        'rbc':0,
-        'pulse':'',
-        'timestamp':'',
+        'thdl': 0,
+        'ldl': 0,
+        'rbc': 0,
+        'pulse': '',
+        'timestamp': '',
         'prev': '0',
-        'hash':hashrec
+        'hash': hashrec,
     }
 
     myrow.insert_one(rec)
     mycol.insert_one(block)
 
-    Blockc=[]
     Bloc=mycol.find()
-    for i in Bloc:
-        Blockc.append(i)
+    Blockc = list(Bloc)
     return render_template('patcreate.html',posts=Blockc)
 
 
@@ -738,9 +729,7 @@ def viewrec():
     s=request.form['owner']
     myrow=mydb[s]#change
     recs=myrow.find()
-    records=[]
-    for x in recs:
-        records.append(x)
+    records = list(recs)
     return render_template('records.html',posts=records)
 
 
@@ -792,47 +781,47 @@ def doclogver():
 @app.route('/docver',methods=['POST'])
 def docverify():
 
-        name=request.form['doc']
-        specialization=request.form['special']
-        address=request.form['add']
-        qualification=request.form['qualific']
-        study=request.form['grad']
-        workcontact=request.form['num']
-        personal=request.form['n']
-        about=request.form['more']
-        ts=time.time()
-        st=datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
-        passwd= request.form['pwd']
-        passwd=encrypt_password(passwd)
-        myrow=mydb['Nodes']
-        patdoc= myrow.find()
-        ind=0
-        for x in patdoc:
-            if(x['_id'].find('DOC'))!=-1:
-                ind=ind+1
-        doc={
-            '_id':'DOC'+str(ind+1),
-            'docname' : name ,
-            'specialization' : specialization,
-            'address' : address,
-            'qualification': qualification,
-            'edufrom' : study,
-            'appointment': workcontact,
-            'number': personal,
-            'moreabout' : about,
-            'timestamp':st,
-            'password':passwd,
-            }
-        session['user']=doc['_id']
-        #sess.username=doc['_id']
-        myrow.insert_one(doc)
-        return render_template('docdash.html')
+    name=request.form['doc']
+    specialization=request.form['special']
+    address=request.form['add']
+    qualification=request.form['qualific']
+    study=request.form['grad']
+    workcontact=request.form['num']
+    personal=request.form['n']
+    about=request.form['more']
+    ts=time.time()
+    st=datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+    passwd= request.form['pwd']
+    passwd=encrypt_password(passwd)
+    myrow=mydb['Nodes']
+    patdoc= myrow.find()
+    ind=0
+    for x in patdoc:
+        if(x['_id'].find('DOC'))!=-1:
+            ind=ind+1
+    doc = {
+        '_id': f'DOC{str(ind + 1)}',
+        'docname': name,
+        'specialization': specialization,
+        'address': address,
+        'qualification': qualification,
+        'edufrom': study,
+        'appointment': workcontact,
+        'number': personal,
+        'moreabout': about,
+        'timestamp': st,
+        'password': passwd,
+    }
+    session['user']=doc['_id']
+    #sess.username=doc['_id']
+    myrow.insert_one(doc)
+    return render_template('docdash.html')
 
 
 #Doctor dashboard
 @app.route('/docdash')
 def docdash():
-    if 'user' in session and str(session['user']).find('DOC')!=-1:
+    if 'user' in session and 'DOC' in str(session['user']):
         return render_template('docdash.html')
     else:
         #Unsuccessful login
@@ -927,11 +916,11 @@ def createcon():
 def back():
     time.sleep(2)
     if 'user' in session:
-        if str(session['user']).find('PAT')!=-1:
+        if 'PAT' in str(session['user']):
             return render_template('patdash.html')
-        if str(session['user']).find('DOC')!=-1:
+        if 'DOC' in str(session['user']):
             return render_template('docdash.html')
-        if str(session['user']).find('ADM')!=-1:
+        if 'ADM' in str(session['user']):
             return render_template('admindash.html')
     return render_template('domain.html')
 
@@ -944,8 +933,7 @@ def display():
         '_id':request.form['_id']
     }
     mycol=mydb[request.form['owner']]
-    myview=mycol.find_one(block)
-    if myview:
+    if myview := mycol.find_one(block):
         return render_template('individualrec.html',post=myview)
     return redirect(url_for('back'))
 
@@ -1024,9 +1012,7 @@ def search():
         mycol=mydb['Nodes']
         temp = {'specialization' : area}
         found = mycol.find(temp)
-        arr=[]
-        for i in found:
-            arr.append(i)
+        arr = list(found)
     return render_template("show.html" , posts=arr ,special=area)
 
 @app.route('/knowndoctor')
@@ -1041,9 +1027,7 @@ def schedule():
     nm = request.form['name']
     temp = {'docname' : nm}
     f = mycol.find(temp)
-    arr=[]
-    for i in f:
-        arr.append(i)
+    arr = list(f)
     return render_template("test.html" , posts=arr)
 
 @app.route('/appoint')
@@ -1066,7 +1050,7 @@ def hospital():
 #Admin login page
 @app.route('/adminlog')
 def adminlog():
-    if 'user' in session and str(session['user']).find('ADM')!=-1:
+    if 'user' in session and 'ADM' in str(session['user']):
         return render_template('admindash.html')
     return render_template('hospitallog.html')
 
@@ -1084,11 +1068,11 @@ def admverify():
     for x in patdoc:
         if(x['_id'].find('ADM'))!=-1:
            ind=ind+1
-    doc={
-        '_id':'ADM'+str(ind+1),
-        'timestamp':st,
-        'password':passwd,
-        'name':nam
+    doc = {
+        '_id': f'ADM{str(ind + 1)}',
+        'timestamp': st,
+        'password': passwd,
+        'name': nam,
     }
     #sess.username=doc['_id']
     session['user']=doc['_id']
@@ -1127,11 +1111,8 @@ def accesslog():
     mycli=mydb['SMART_CONTRACT']
     query={"owner":session['user']}
     mydata=mycli.find(query)
-    block=[]
-    for x in mydata:
-            block.append(x)
+    block = list(mydata)
     block.reverse()
-            #sess.id=x['accessor']
     return render_template('accesslog.html',posts=block)
 
 
@@ -1220,12 +1201,11 @@ def decline():
 
 @app.route('/medrec')
 def medrec():
-    if 'user' in session:
-        idv={ 'doc': session['user']}
-        return render_template('medrec.html',posts=idv)
-    else:
+    if 'user' not in session:
         #Unsuccessful login
         return render_template('domain.html')
+    idv={ 'doc': session['user']}
+    return render_template('medrec.html',posts=idv)
 @app.route('/logout')
 def logout():
     if 'user' in session:
@@ -1264,33 +1244,27 @@ def result():
     d = today.strftime("%B %d, %Y")
     onepost = mycolh.find()
 
-    for x in onepost:
+    for _ in onepost:
         i=i+1
-    block ={
-    '_id':'POST'+str(i),
-    'title': title,
-    'url' :imgurl,
-    'content' : content,
-    'time' :d
+    block = {
+        '_id': f'POST{str(i)}',
+        'title': title,
+        'url': imgurl,
+        'content': content,
+        'time': d,
     }
     mycolh.insert_one(block)
 
-    arr=[]
     temp={'title': title}
     f =  mycolh.find(temp)
-    for i in f:
-        arr.append(i)
-
+    arr = list(f)
     return render_template("output.html" , posts=arr)
 
 @app.route('/view')
 def view():
 
     mycolh = mydbh["medblog"]
-    temp =[]
-    for x in mycolh.find():
-        temp.append(x)
-
+    temp = list(mycolh.find())
     return render_template("allposts.html" , posts=temp)
 
 
@@ -1302,13 +1276,10 @@ def delete():
 def deletepost():
     pid = request.form['pid']
     tit = request.form['title']
-    arr=[]
     temp = {'_id' : pid}
     found = mycolh.find(temp)
 
-    for k in found:
-        arr.append(k)
-
+    arr = list(found)
     mycolh.delete_one(temp)
 
     return render_template("deleted.html" , posts=arr)
@@ -1326,14 +1297,10 @@ def updatepost():
 
     mycolh.update_one(temp,change)
 
-    arr=[]
     temp = {'_id' : pid}
     found = mycolh.find(temp)
 
-    for k in found:
-        arr.append(k)
-
-
+    arr = list(found)
     return render_template("updatedpost.html",posts=arr)
 
 
